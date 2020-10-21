@@ -6,7 +6,8 @@ using UnityEngine;
 public class DeckTester : MonoBehaviour
 {
     //Deck<Card> _testDeck = new Deck<Card>();
-
+    [SerializeField] List<AbilityCardData> _abilityDeckConfig = new List<AbilityCardData>();
+    [SerializeField] AbilityCardView _abilityCardView = null;
     Deck<AbilityCard> _abilityDeck = new Deck<AbilityCard>();
     Deck<AbilityCard> _abilityDiscard = new Deck<AbilityCard>();
 
@@ -22,16 +23,23 @@ public class DeckTester : MonoBehaviour
     private void SetUpAbilityDeck()
     {
         Debug.Log("Creating Ability cards...");
-        AbilityCard cardA = new AbilityCard("Sword");
-        _abilityDeck.Add(cardA);
-        AbilityCard cardB = new AbilityCard("Shield");
-        _abilityDeck.Add(cardB);
-        AbilityCard cardC = new AbilityCard("Staff");
-        _abilityDeck.Add(cardC);
-        AbilityCard cardD = new AbilityCard("Barrier");
-        _abilityDeck.Add(cardD);
 
+        foreach (AbilityCardData abilityData in _abilityDeckConfig)
+        {
+            AbilityCard newAbilityCard = new AbilityCard(abilityData);
+            _abilityDeck.Add(newAbilityCard);
+        }
         _abilityDeck.Shuffle();
+
+        /* AbilityCard cardA = new AbilityCard("Sword");
+         _abilityDeck.Add(cardA);
+         AbilityCard cardB = new AbilityCard("Shield");
+         _abilityDeck.Add(cardB);
+         AbilityCard cardC = new AbilityCard("Staff");
+         _abilityDeck.Add(cardC);
+         AbilityCard cardD = new AbilityCard("Barrier");
+         _abilityDeck.Add(cardD);*/
+
         //Card testCard = _abilityDeck.Draw(DeckPosition.Top);
         //Debug.Log("Drew card: " + testCard);
         //testCard.Play();
@@ -58,6 +66,8 @@ public class DeckTester : MonoBehaviour
         AbilityCard newCard = _abilityDeck.Draw(DeckPosition.Top);
         Debug.Log("Drew card: " + newCard.Name);
         _playerHand.Add(newCard, DeckPosition.Top);
+
+        _abilityCardView.Display(newCard);
     }
 
     private void PrintPlayerHand()
