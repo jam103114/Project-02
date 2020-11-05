@@ -20,6 +20,5 @@ public class AbilityCard : Card
         ITargetable target = TargetController.CurrentTarget;
         Debug.Log("Playing " + Name + " on ");
         PlayEffect.Activate(target);
-        //throw new System.NotImplementedException();)
     }
 }

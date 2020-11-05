@@ -25,15 +25,4 @@ public class Creature : MonoBehaviour, ITargetable, IDamageable
     {
         Debug.Log("Creature has been targeted.");
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
