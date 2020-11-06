@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class DungeonEventGameState : CardGameState
 {
-    bool _check = false;
-    [SerializeField] DeckTester _deckTester;
+    [SerializeField] DeckTester _deckTester = null;
     bool _checkDone = false;
     public override void Enter()
     {

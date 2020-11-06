@@ -345,7 +345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &52324691
 Transform:
   m_ObjectHideFlags: 0
@@ -439,7 +439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &57433905
 Transform:
   m_ObjectHideFlags: 0
@@ -927,6 +927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e65a7b50fb9bcb43be4c99912b3666f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dead: 0
+  _boss: 0
 --- !u!4 &304870369
 Transform:
   m_ObjectHideFlags: 0
@@ -3495,6 +3497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTurnTextUI: {fileID: 2058689452}
+  _creature: {fileID: 304870368}
+  _deckTester: {fileID: 433061639}
 --- !u!114 &887438965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3508,6 +3512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseDuration: 1.5
+  _deckTester: {fileID: 433061639}
 --- !u!114 &887438966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3520,6 +3525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8a988f6b9439c4aaa6eb86236dcb45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _creature: {fileID: 304870368}
 --- !u!114 &887438967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3582,6 +3588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dungeonEvent: {fileID: 1582180552}
+  _creature: {fileID: 304870368}
 --- !u!114 &887438972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4346,7 +4353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &997991032
 Transform:
   m_ObjectHideFlags: 0
@@ -5195,7 +5202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1367166899
 Transform:
   m_ObjectHideFlags: 0
@@ -5480,7 +5487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1421396293
 Transform:
   m_ObjectHideFlags: 0
@@ -5790,6 +5797,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 887438970}
+        m_MethodName: DungeonEventCheck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1536705710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5986,7 +6004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1620545097
 Transform:
   m_ObjectHideFlags: 0
@@ -7164,7 +7182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2069017631
 Transform:
   m_ObjectHideFlags: 0

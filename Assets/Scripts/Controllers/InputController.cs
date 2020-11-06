@@ -30,7 +30,7 @@ public class InputController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             PressedLeft?.Invoke();
-        }
+       }
     }
 
     private void DetectedCancel()

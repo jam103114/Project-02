@@ -9,7 +9,7 @@ public class EnemyTurnCardGameState : CardGameState
     public static event Action EnemyTurnEnded;
 
     [SerializeField] float _pauseDuration = 1.5f;
-    [SerializeField] DeckTester _deckTester;
+    [SerializeField] DeckTester _deckTester = null;
 
     public override void Enter()
     {

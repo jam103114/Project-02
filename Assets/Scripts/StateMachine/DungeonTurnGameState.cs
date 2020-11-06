@@ -7,7 +7,7 @@ public class DungeonTurnGameState : CardGameState
     bool _event = false;
     bool _enemy = false;
     int _randomChoice = 1;
-    [SerializeField] GameObject _dungeonEvent;
+    [SerializeField] GameObject _dungeonEvent = null;
     [SerializeField] Creature _creature;
 
 

@@ -8,7 +8,7 @@ public class DeckTester : MonoBehaviour
     //Deck<Card> _testDeck = new Deck<Card>();
     [SerializeField] List<AbilityCardData> _abilityDeckConfig = new List<AbilityCardData>();
     //[SerializeField] AbilityCardView _abilityCardView = null;
-    [SerializeField] GameObject _toSpawn;
+    [SerializeField] GameObject _toSpawn = null;
     [SerializeField] Transform _pHSlotOne = null;
     [SerializeField] Transform _pHSlotTwo = null;
     [SerializeField] Transform _pHSlotThree = null;
@@ -49,21 +49,21 @@ public class DeckTester : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        /*if (Input.GetKeyDown(KeyCode.Q))
         {
             Draw();
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.W))
         {
             PrintPlayerHand();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayTopCard();
-        }
+        }*/
     }
 
-    private void Draw()
+    public void Draw()
     {
         if (_playerHand.Count < 5)
         {
@@ -77,6 +77,7 @@ public class DeckTester : MonoBehaviour
                 AbilityCardView abilityCardView = _phCardOne.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                 abilityCardView.Display(newCard);
                 phOne = true;
+                _pHSlotOne.gameObject.SetActive(true);
             }
             else if (phTwo == false)
             {
@@ -146,9 +147,8 @@ public class DeckTester : MonoBehaviour
         _playerHand.Remove(_playerHand.LastIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
-
-
         Destroy(_phCardOne);
+        _pHSlotOne.gameObject.SetActive(false);
     }
 
     public void PlayCardTwo()
