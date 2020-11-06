@@ -25,9 +25,9 @@ public class DeckTester : MonoBehaviour
     public bool phFour = false;
     public bool phFive = false;
 
-    Deck<AbilityCard> _abilityDeck = new Deck<AbilityCard>();
-    Deck<AbilityCard> _abilityDiscard = new Deck<AbilityCard>();
-    Deck<AbilityCard> _playerHand = new Deck<AbilityCard>();
+    public Deck<AbilityCard> _abilityDeck = new Deck<AbilityCard>();
+    public Deck<AbilityCard> _abilityDiscard = new Deck<AbilityCard>();
+    public Deck<AbilityCard> _playerHand = new Deck<AbilityCard>();
 
     void Start()
     {
@@ -138,6 +138,32 @@ public class DeckTester : MonoBehaviour
         //SortHand(); TODO
     }
 
+    public void PlayCardOne()
+    {
+        AbilityCard targetCard = _playerHand.TopItem;
+        targetCard.Play();
+        //TODO consider expanding remove to accept a deck position
+        _playerHand.Remove(_playerHand.LastIndex);
+        _abilityDiscard.Add(targetCard);
+        Debug.Log("Card added to dicard: " + targetCard.Name);
+
+
+        Destroy(_phCardOne);
+    }
+
+    public void PlayCardTwo()
+    {
+        AbilityCard targetCard = _playerHand.SecondItem;
+        targetCard.Play();
+        //TODO consider expanding remove to accept a deck position
+        _playerHand.Remove(_playerHand.Count );
+        _abilityDiscard.Add(targetCard);
+        Debug.Log("Card added to dicard: " + targetCard.Name);
+
+
+        Destroy(_phCardTwo);
+    }
+
     private void SortHand()
     {
         if (phOne == true)
@@ -172,4 +198,11 @@ public class DeckTester : MonoBehaviour
         }
         else { }
     }
+
+    public void TestMePlease()
+    {
+        Debug.Log("Yo YO YOOOOO!");
+    }
+
+
 }

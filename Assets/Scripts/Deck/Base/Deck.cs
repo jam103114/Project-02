@@ -13,6 +13,10 @@ public class Deck <T> where T : Card
 
     public int Count => _cards.Count;
     public T TopItem => _cards[_cards.Count - 1];
+    public T SecondItem => _cards[_cards.Count -2];
+    public T ThirdItem => _cards[_cards.Count +1];
+    public T FourthItem => _cards[_cards.Count +2];
+    public T FifthItem => _cards[_cards.Count +3];
     public T BottomItem => _cards[0];
     public bool IsEmpty => _cards.Count == 0;
     public int LastIndex

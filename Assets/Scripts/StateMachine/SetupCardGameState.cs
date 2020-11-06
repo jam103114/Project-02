@@ -22,7 +22,7 @@ public class SetupCardGameState : CardGameState
         if (_activated == false)
         {
             _activated = true;
-            StateMachine.ChangeState<PlayerTurnCardGameState>();
+            StateMachine.ChangeState<EnemyCalculateGameState>();
         }
     }
 

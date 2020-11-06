@@ -5,9 +5,12 @@ using UnityEngine;
 public class Creature : MonoBehaviour, ITargetable, IDamageable
 {
     int _currentHealth = 10;
+    public bool _dead = false;
+    public bool _boss = false;
 
     public void Kill()
     {
+        _dead = true;
         Debug.Log("Creature Died");
         gameObject.SetActive(false);
     }

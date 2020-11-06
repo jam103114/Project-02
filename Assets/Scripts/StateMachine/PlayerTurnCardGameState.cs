@@ -7,6 +7,7 @@ using TMPro;
 public class PlayerTurnCardGameState : CardGameState
 {
     [SerializeField] TextMeshProUGUI _playerTurnTextUI = null;
+    [SerializeField] Creature _creature = null;
 
     int _playerTurnCount = 0;
 
@@ -27,8 +28,16 @@ public class PlayerTurnCardGameState : CardGameState
         Debug.Log("Player Turn: Exiting...");
     }
 
-    void OnPressedConfirm()
+    public void OnPressedConfirm()
     {
-        StateMachine.ChangeState<EnemyTurnCardGameState>();
+        if(_creature._dead == true)
+        {
+            StateMachine.ChangeState<CombatEndGameState>();
+        }
+        else
+        {
+            StateMachine.ChangeState<EnemyTurnCardGameState>();
+
+        }
     }
 }

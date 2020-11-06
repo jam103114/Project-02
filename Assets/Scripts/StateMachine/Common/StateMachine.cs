@@ -11,6 +11,10 @@ public abstract class StateMachine : MonoBehaviour
     State _currentState;
     protected State _previousState;
 
+    private void Start()
+    {
+        ChangeState<MainMenuGameState>();
+    }
     public void ChangeState<T>() where T : State 
     {
         T targetState = GetComponent<T>();

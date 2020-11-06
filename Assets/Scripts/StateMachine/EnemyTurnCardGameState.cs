@@ -9,6 +9,7 @@ public class EnemyTurnCardGameState : CardGameState
     public static event Action EnemyTurnEnded;
 
     [SerializeField] float _pauseDuration = 1.5f;
+    [SerializeField] DeckTester _deckTester;
 
     public override void Enter()
     {
@@ -18,6 +19,14 @@ public class EnemyTurnCardGameState : CardGameState
         StartCoroutine(EnemyThinkingRoutine(_pauseDuration));
     }
 
+    public override void Tick()
+    {
+        if ((_deckTester._abilityDeck.Count == 0) && (_deckTester._abilityDiscard.Count == 0) && (_deckTester._playerHand.Count == 0))
+        {
+            Debug.Log("You Lose");
+            StateMachine.ChangeState<LoseGameState>();
+        }
+    }
     public override void Exit()
     {
         Debug.Log("Enemy Turn: Exit...");
@@ -30,6 +39,6 @@ public class EnemyTurnCardGameState : CardGameState
 
         Debug.Log("Enemy performs action");
         EnemyTurnEnded?.Invoke();
-        StateMachine.ChangeState<PlayerTurnCardGameState>();
+        StateMachine.ChangeState<EnemyCalculateGameState>();
     }
 }
