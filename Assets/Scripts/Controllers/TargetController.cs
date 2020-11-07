@@ -6,9 +6,10 @@ public class TargetController : MonoBehaviour
 {
     public static ITargetable CurrentTarget;
     [SerializeField] Creature _objectToTarget = null;
+    public bool _targetSetUp = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (_targetSetUp == true)
         {
             ITargetable possibleTarget = _objectToTarget.GetComponent<ITargetable>();
             if (possibleTarget != null)
@@ -17,6 +18,7 @@ public class TargetController : MonoBehaviour
                 CurrentTarget = possibleTarget;
                 _objectToTarget.Target();
             }
+            _targetSetUp = false;
         }
     }
 }

@@ -13,12 +13,27 @@ public class Deck <T> where T : Card
 
     public int Count => _cards.Count;
     public T TopItem => _cards[_cards.Count - 1];
-    public T SecondItem => _cards[_cards.Count -2];
-    public T ThirdItem => _cards[_cards.Count +1];
-    public T FourthItem => _cards[_cards.Count +2];
-    public T FifthItem => _cards[_cards.Count +3];
+    public T FirstItem => _cards[0];
+    public T SecondItem => _cards[1];
+    public T ThirdItem => _cards[2];
+    public T FourthItem => _cards[3];
+    public T FifthItem => _cards[4];
     public T BottomItem => _cards[0];
     public bool IsEmpty => _cards.Count == 0;
+    public int FirstIndex;
+    /*{
+        get 
+        {
+            if (_cards.Count == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }    */
     public int LastIndex
     {
         get
@@ -34,6 +49,7 @@ public class Deck <T> where T : Card
         }
     }
 
+
     private int GetIndexFromPosition(DeckPosition position)
     {
         int newPositionIndex = 0;
@@ -46,6 +62,22 @@ public class Deck <T> where T : Card
         if (position == DeckPosition.Top)
         {
             newPositionIndex = LastIndex;
+        }
+        else if (position == DeckPosition.Second)
+        {
+            newPositionIndex = LastIndex - 1;
+        }
+        else if (position == DeckPosition.Third)
+        {
+            newPositionIndex = LastIndex - 2;
+        }
+        else if (position == DeckPosition.Forth)
+        {
+            newPositionIndex = LastIndex - 3;
+        }
+        else if (position == DeckPosition.Fifth)
+        {
+            newPositionIndex = LastIndex - 4;
         }
         else if (position == DeckPosition.Middle)
         {
@@ -123,6 +155,30 @@ public class Deck <T> where T : Card
         {
             Emptied?.Invoke();
         }
+    }
+
+    public void RemoveSecond(DeckPosition position = DeckPosition.Second)
+    {
+        int targetIndex = GetIndexFromPosition(position);
+        Remove(targetIndex);
+    }
+
+    public void RemoveThird(DeckPosition position = DeckPosition.Third)
+    {
+        int targetIndex = GetIndexFromPosition(position);
+        Remove(targetIndex);
+    }
+
+    public void RemoveFourth(DeckPosition position = DeckPosition.Forth)
+    {
+        int targetIndex = GetIndexFromPosition(position);
+        Remove(targetIndex);
+    }
+
+    public void RemoveFifth(DeckPosition position = DeckPosition.Fifth)
+    {
+        int targetIndex = GetIndexFromPosition(position);
+        Remove(targetIndex);
     }
 
     bool IsIndexWithinListRange(int index)

@@ -9,6 +9,8 @@ public class DungeonTurnGameState : CardGameState
     int _randomChoice = 1;
     [SerializeField] GameObject _dungeonEvent = null;
     [SerializeField] Creature _creature;
+    [SerializeField] GameObject _dungeonDeck = null;
+
 
 
     /// <summary>
@@ -18,6 +20,7 @@ public class DungeonTurnGameState : CardGameState
     public override void Enter()
     {
         Debug.Log("Entering Dungeon Turn");
+        _dungeonDeck.SetActive(true);
     }
 
     public override void Tick()

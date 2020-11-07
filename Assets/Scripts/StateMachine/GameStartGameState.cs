@@ -9,6 +9,7 @@ public class GameStartGameState : CardGameState
     public static event Action StartGameEnded;
 
     [SerializeField] float _pauseDuration = 1.5f;
+    [SerializeField] TargetController _target = null;
 
     public override void Enter()
     {
@@ -26,6 +27,7 @@ public class GameStartGameState : CardGameState
     IEnumerator StartingGame(float pauseDuration)
     {
         Debug.Log("Setting Up Dungeon Deck");
+        _target._targetSetUp = true;
         yield return new WaitForSeconds(pauseDuration);
 
         Debug.Log("Done");

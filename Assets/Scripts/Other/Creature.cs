@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour, ITargetable, IDamageable
 {
-    int _currentHealth = 10;
+    int _currentHealth = 4;
     public bool _dead = false;
     public bool _boss = false;
 

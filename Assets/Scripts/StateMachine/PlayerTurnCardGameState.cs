@@ -7,7 +7,7 @@ using TMPro;
 public class PlayerTurnCardGameState : CardGameState
 {
     [SerializeField] TextMeshProUGUI _playerTurnTextUI = null;
-    [SerializeField] Creature _creature = null;
+    //[SerializeField] Creature _creature = null;
     [SerializeField] DeckTester _deckTester = null;
 
     int _playerTurnCount = 0;
@@ -21,6 +21,7 @@ public class PlayerTurnCardGameState : CardGameState
         _playerTurnCount++;
         _playerTurnTextUI.text = "Player Turn: " + _playerTurnCount.ToString();
         StateMachine.Input.PressedConfirm += OnPressedConfirm;
+        _deckTester.SwitchButtonsOn();
     }
 
     public override void Exit()
@@ -28,18 +29,11 @@ public class PlayerTurnCardGameState : CardGameState
         _playerTurnTextUI.gameObject.SetActive(false);
         StateMachine.Input.PressedConfirm -= OnPressedConfirm;
         Debug.Log("Player Turn: Exiting...");
+        _deckTester.SwitchButtonsOff();
     }
 
     public void OnPressedConfirm()
     {
-        if(_creature._dead == true)
-        {
-            StateMachine.ChangeState<CombatEndGameState>();
-        }
-        else
-        {
-            StateMachine.ChangeState<EnemyTurnCardGameState>();
-
-        }
+            StateMachine.ChangeState<CalculatePlayerDamageTurnGameState>();
     }
 }

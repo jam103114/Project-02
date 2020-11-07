@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6301195}
   m_Layer: 0
-  m_Name: Field
+  m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -971,7 +971,7 @@ RectTransform:
   m_GameObject: {fileID: 318535051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 584677352}
   m_Father: {fileID: 1638375815}
@@ -980,7 +980,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 161.6, y: 64.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &318535053
 MonoBehaviour:
@@ -1102,7 +1102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &409456616
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1346,6 +1346,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5a4c5332ae3851a499007f48901fa5cd, type: 2}
   - {fileID: 11400000, guid: ddbbd77340c201c41a8b2902869d6bd7, type: 2}
   - {fileID: 11400000, guid: ddbbd77340c201c41a8b2902869d6bd7, type: 2}
+  _discardZone: {fileID: 1098301247}
   _toSpawn: {fileID: 4600599291040795808, guid: f61477386da473b45b3b8b692931a21a,
     type: 3}
   _pHSlotOne: {fileID: 57433905}
@@ -1353,11 +1354,17 @@ MonoBehaviour:
   _pHSlotThree: {fileID: 1421396293}
   _pHSlotFour: {fileID: 2069017631}
   _pHSlotFive: {fileID: 997991032}
+  _buttonOne: {fileID: 635618169}
+  _buttonTwo: {fileID: 1134209009}
+  _buttonThree: {fileID: 954389378}
+  _buttonFour: {fileID: 920208964}
+  _buttonFive: {fileID: 409456615}
   phOne: 0
   phTwo: 0
   phThree: 0
   phFour: 0
   phFive: 0
+  _discardCount: 0
 --- !u!4 &433061640
 Transform:
   m_ObjectHideFlags: 0
@@ -1939,7 +1946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Dungeon Card 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2008,12 +2015,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 574471691}
-    characterCount: 6
+    characterCount: 14
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -2095,7 +2102,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Dungeon Card 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2164,12 +2171,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 584677353}
-    characterCount: 6
+    characterCount: 14
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -2466,7 +2473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &635618170
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2945,6 +2952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToTarget: {fileID: 304870368}
+  _targetSetUp: 0
 --- !u!1 &758030552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3001,7 +3009,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Dungeon Card 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3070,12 +3078,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 758030554}
-    characterCount: 6
+    characterCount: 14
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -3436,6 +3444,7 @@ GameObject:
   - component: {fileID: 887438968}
   - component: {fileID: 887438967}
   - component: {fileID: 887438966}
+  - component: {fileID: 887438974}
   m_Layer: 0
   m_Name: StateController
   m_TagString: Untagged
@@ -3471,6 +3480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingCardNumber: 5
   _numberOfPlayers: 2
+  _deckTester: {fileID: 433061639}
 --- !u!114 &887438963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3497,7 +3507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTurnTextUI: {fileID: 2058689452}
-  _creature: {fileID: 304870368}
   _deckTester: {fileID: 433061639}
 --- !u!114 &887438965
 MonoBehaviour:
@@ -3589,6 +3598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dungeonEvent: {fileID: 1582180552}
   _creature: {fileID: 304870368}
+  _dungeonDeck: {fileID: 1292943460}
 --- !u!114 &887438972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3602,6 +3612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseDuration: 1.5
+  _target: {fileID: 704540286}
 --- !u!114 &887438973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3614,6 +3625,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e0b34c06a6e44f40a4ffa56ddea7104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &887438974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887438960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e98d844e6cba94cb40775b9d01c2c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creature: {fileID: 304870368}
 --- !u!1 &896893283
 GameObject:
   m_ObjectHideFlags: 0
@@ -3826,7 +3850,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Click To Resolve
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3895,12 +3919,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 915433095}
-    characterCount: 6
+    characterCount: 16
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -3974,7 +3998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &920208965
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4093,7 +4117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &954389379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4457,7 +4481,7 @@ RectTransform:
   m_GameObject: {fileID: 1031021360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 758030553}
   m_Father: {fileID: 1193179419}
@@ -4466,7 +4490,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 161.6, y: 64.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1031021362
 MonoBehaviour:
@@ -4707,6 +4731,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016a7f96c942f5a49adf1c70fdc4ef2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1098301247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1098301248}
+  m_Layer: 0
+  m_Name: DiscardZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1098301248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098301247}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.86, y: 0, z: 5.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1620545097}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1134209009
 GameObject:
   m_ObjectHideFlags: 0
@@ -4725,7 +4779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1134209010
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4800,12 +4854,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 887438964}
+        m_MethodName: OnPressedConfirm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5061,7 +5115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1292943461
 Transform:
   m_ObjectHideFlags: 0
@@ -5202,7 +5256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1367166899
 Transform:
   m_ObjectHideFlags: 0
@@ -5730,7 +5784,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 172.67, y: 100.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536705709
 MonoBehaviour:
@@ -6004,7 +6058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1620545097
 Transform:
   m_ObjectHideFlags: 0
@@ -6025,6 +6079,7 @@ Transform:
   - {fileID: 49002689}
   - {fileID: 1596768517}
   - {fileID: 1292943461}
+  - {fileID: 1098301248}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6064,7 +6119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5.38, y: -0.5058938}
+  m_AnchoredPosition: {x: 4.97, y: -0.5058938}
   m_SizeDelta: {x: 150, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1638375816
@@ -6895,7 +6950,7 @@ RectTransform:
   m_GameObject: {fileID: 2026732269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 574471690}
   m_Father: {fileID: 1784959772}
@@ -6904,7 +6959,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 161.6, y: 64.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2026732271
 MonoBehaviour:
