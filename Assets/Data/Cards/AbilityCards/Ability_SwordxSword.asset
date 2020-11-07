@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83fac9fa05d899449e36893fa5ff0a6, type: 3}
   m_Name: Ability_SwordxSword
   m_EditorClassIdentifier: 
-  _name: ...
-  _cost: 1
-  _graphic: {fileID: 0}
-  _playEffect: {fileID: 0}
+  _name: SwordxSword
+  _cost: 2
+  _graphic: {fileID: 21300000, guid: dd31ec3821be9954c8ab476eb9019382, type: 3}
+  _playEffect: {fileID: 11400000, guid: 9aa51bd3eca77934795b9cdd4c3a285f, type: 2}

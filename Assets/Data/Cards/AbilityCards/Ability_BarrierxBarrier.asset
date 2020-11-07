@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83fac9fa05d899449e36893fa5ff0a6, type: 3}
   m_Name: Ability_BarrierxBarrier
   m_EditorClassIdentifier: 
-  _name: ...
-  _cost: 1
-  _graphic: {fileID: 0}
-  _playEffect: {fileID: 0}
+  _name: BarrierxBarrier
+  _cost: 2
+  _graphic: {fileID: 21300000, guid: b49d914a53404d84a891a65ad65157a1, type: 3}
+  _playEffect: {fileID: 11400000, guid: 8e848d4907bf95b42a66b993e23e6ae1, type: 2}
