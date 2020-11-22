@@ -13,6 +13,10 @@ public class Deck <T> where T : Card
 
     public int Count => _cards.Count;
     public T TopItem => _cards[_cards.Count - 1];
+    public T SndItem => _cards[_cards.Count - 2];
+    public T ThrItem => _cards[_cards.Count - 3];
+    public T FrItem => _cards[_cards.Count - 4];
+    public T FthItem => _cards[_cards.Count - 5];
     public T FirstItem => _cards[0];
     public T SecondItem => _cards[1];
     public T ThirdItem => _cards[2];
@@ -20,20 +24,26 @@ public class Deck <T> where T : Card
     public T FifthItem => _cards[4];
     public T BottomItem => _cards[0];
     public bool IsEmpty => _cards.Count == 0;
-    public int FirstIndex;
+    public int FirstIndex = 0;
     /*{
-        get 
+        get
         {
-            if (_cards.Count == 1)
-            {
-                return 1;
-            }
-            else
+            if (_cards.Count == 0)
             {
                 return 0;
             }
+            else
+            {
+                return 1;
+            }
         }
-    }    */
+    }*/
+    public int SecondIndex = 1;
+    public int ThirdIndex = 2;
+    public int FourthIndex = 3;
+    public int FifthIndex = 4;
+
+      
     public int LastIndex
     {
         get
@@ -155,6 +165,8 @@ public class Deck <T> where T : Card
         {
             Emptied?.Invoke();
         }
+
+        //Debug.Log("Deck: Removed" + removedItem.ToString());
     }
 
     public void RemoveSecond(DeckPosition position = DeckPosition.Second)

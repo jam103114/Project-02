@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using TMPro;
 
 public class DeckTester : MonoBehaviour
 {
-    //Deck<Card> _testDeck = new Deck<Card>();
     [SerializeField] List<AbilityCardData> _abilityDeckConfig = new List<AbilityCardData>();
     [SerializeField] GameObject _discardZone = null;
-    //[SerializeField] AbilityCardView _abilityCardView = null;
     [SerializeField] GameObject _toSpawn = null;
     [SerializeField] Transform _pHSlotOne = null;
     [SerializeField] Transform _pHSlotTwo = null;
@@ -36,6 +36,11 @@ public class DeckTester : MonoBehaviour
     public Deck<AbilityCard> _abilityDiscard = new Deck<AbilityCard>();
     public Deck<AbilityCard> _playerHand = new Deck<AbilityCard>();
 
+    [SerializeField] [Range(0f, 3f)] private float lerpPct = 0f;
+    private int playcard = 0;
+
+    //[SerializeField] TextMeshProUGUI _countTxtone = null;
+
     void Start()
     {
         SetUpAbilityDeck();
@@ -56,18 +61,68 @@ public class DeckTester : MonoBehaviour
 
     private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Draw();
-        }*/
         if (Input.GetKeyDown(KeyCode.W))
         {
             PrintPlayerHand();
         }
-        /*if (Input.GetKeyDown(KeyCode.Space))
+
+        if (playcard == 1)
         {
-            PlayTopCard();
-        }*/
+            PlayCardOnBoard(_phCardOne, _pHSlotOne);
+            lerpPct += .02f;
+            if (lerpPct >= 3f)
+            {
+                lerpPct = 0f;
+                playcard = 0;
+                SortHand(1);
+            }
+        }
+        else if (playcard == 2)
+        {
+            PlayCardOnBoard(_phCardTwo, _pHSlotTwo);
+            lerpPct += .02f;
+            if (lerpPct >= 3f)
+            {
+                lerpPct = 0f;
+                playcard = 0;
+                SortHand(2);
+            }
+        }
+        else if (playcard == 3)
+        {
+            PlayCardOnBoard(_phCardThree, _pHSlotThree);
+            lerpPct += .02f;
+            if (lerpPct >= 3f)
+            {
+                lerpPct = 0f;
+                playcard = 0;
+                SortHand(3);
+            }
+        }
+        else if (playcard == 4)
+        {
+            PlayCardOnBoard(_phCardFour, _pHSlotFour);
+            lerpPct += .02f;
+            if (lerpPct >= 3f)
+            {
+                lerpPct = 0f;
+                playcard = 0;
+                SortHand(4);
+            }
+        }
+        else if (playcard == 5)
+        {
+            PlayCardOnBoard(_phCardFive, _pHSlotFive);
+            lerpPct += .02f;
+            if (lerpPct >= 3f)
+            {
+                lerpPct = 0f;
+                playcard = 0;
+                SortHand(5);
+            }
+        }
+        else { }
+
     }
 
     public void Draw()
@@ -86,7 +141,6 @@ public class DeckTester : MonoBehaviour
                     abilityCardView.Display(newCard);
                     phOne = true;
                     _pHSlotOne.gameObject.SetActive(true);
-
                 }
                 else if (phTwo == false)
                 {
@@ -130,9 +184,10 @@ public class DeckTester : MonoBehaviour
                 Debug.Log("Max Hand Size");
             }
         }
-        
-
-        
+        else if((_abilityDeck.IsEmpty == true) && (_abilityDiscard.IsEmpty == false))
+        {
+            
+        }
     }
 
     private void PrintPlayerHand()
@@ -157,107 +212,122 @@ public class DeckTester : MonoBehaviour
         //SortHand(); TODO
     }
 
-    public void PlayCardOne()
+    #region testcode
+    //comment
+   /* public void PlayCard(int index)
     {
         AbilityCard targetCard = _playerHand.FirstItem;
         targetCard.Play();
         //TODO consider expanding remove to accept a deck position
-        _playerHand.Remove(_playerHand.LastIndex);
+        _playerHand.Remove(_playerHand.FirstIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
-        //Destroy(_phCardOne);
-        phOne = false;
-        _pHSlotOne.gameObject.SetActive(false);
-        PlayCardOnBoard(_phCardOne);
+        phFive = false;
+        playcard = 1;
+        SortHand(1);
+    }*/
+
+
+    #endregion
+
+    public void PlayCardOne()
+    {
+        AbilityCard targetCard = _playerHand.FirstItem;
+        Debug.Log(_playerHand.FirstIndex.ToString());
+        targetCard.Play();
+        _playerHand.Remove(_playerHand.FirstIndex);
+        _abilityDiscard.Add(targetCard);
+        Debug.Log("Card added to dicard: " + targetCard.Name);
+        phFive = false;
+        playcard = 1;
+
+        Debug.Log(_playerHand.Count.ToString());
     }
 
     public void PlayCardTwo()
     {
         AbilityCard targetCard = _playerHand.SecondItem;
         targetCard.Play();
-        //_playerHand.Remove(_playerHand.FirstIndex);
-        _playerHand.RemoveSecond(DeckPosition.Second);
+        _playerHand.Remove(_playerHand.SecondIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
-        phTwo = false;
-        _pHSlotTwo.gameObject.SetActive(false);
-        PlayCardOnBoard(_phCardTwo);
+        phFive = false;
+        playcard = 2;
+        //PlayCardOnBoard(_phCardTwo, _pHSlotTwo);
+        //_playerHand.RemoveSecond(DeckPosition.Second);
     }
 
     public void PlayCardThree()
     {
         AbilityCard targetCard = _playerHand.ThirdItem;
         targetCard.Play();
-        _playerHand.RemoveThird(DeckPosition.Third);
+        _playerHand.Remove(_playerHand.ThirdIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
-        phThree = false;
-        _pHSlotThree.gameObject.SetActive(false);
-        PlayCardOnBoard(_phCardThree);
+        phFive = false;
+        playcard = 3;
     }
 
     public void PlayCardFour()
     {
         AbilityCard targetCard = _playerHand.FourthItem;
         targetCard.Play();
-        _playerHand.RemoveFourth(DeckPosition.Forth);
+        _playerHand.Remove(_playerHand.FourthIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
-        phFour = false;
-        _pHSlotFour.gameObject.SetActive(false);
-        PlayCardOnBoard(_phCardFour);
+        phFive = false;
+        playcard = 4;
     }
 
     public void PlayCardFive()
     {
         AbilityCard targetCard = _playerHand.FifthItem;
         targetCard.Play();
-        _playerHand.RemoveFifth(DeckPosition.Fifth);
+        _playerHand.Remove(_playerHand.FifthIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
         phFive = false;
-        _pHSlotFive.gameObject.SetActive(false);
-        PlayCardOnBoard(_phCardFive);
+        playcard = 5;
     }
 
-    private void SortHand()
+    private void SortHand(int arg)
     {
-        if (phOne == true)
+        if (arg == 1)
         {
-            Destroy(_phCardOne);
-            if (phFive == true)
-            {
-                _phCardFive.transform.position = _pHSlotFour.position;
-
-            }
-            if (phTwo == true)
-            {
-                _phCardTwo.transform.position = _pHSlotOne.position;
-                _phCardOne = _phCardTwo;
-            }
+            _phCardOne = _phCardTwo;
+            _phCardTwo = _phCardThree;
+            _phCardThree = _phCardFour;
+            _phCardFour = _phCardFive;
+            _phCardFive = null;
         }
-        else if (phTwo == true)
+        else if (arg == 2)
         {
-            Destroy(_phCardTwo);
+            _phCardTwo = _phCardThree;
+            _phCardThree = _phCardFour;
+            _phCardFour = _phCardFive;
+            _phCardFive = null;
         }
-        else if (phThree == true)
+        else if (arg == 3)
         {
-            Destroy(_phCardThree);
+            _phCardThree = _phCardFour;
+            _phCardFour = _phCardFive;
+            _phCardFive = null;
         }
-        else if (phFour == true)
+        else if (arg == 4)
         {
-            Destroy(_phCardFour);
+            _phCardFour = _phCardFive;
+            _phCardFive = null;
         }
-        else if (phFive == true)
+        else if (arg == 5)
         {
-            Destroy(_phCardFive);
+            _phCardFive = null;
         }
         else { }
-    }
 
-    public void TestMePlease()
-    {
-        Debug.Log("Yo YO YOOOOO!");
+        _phCardOne.transform.position = _pHSlotOne.position;
+        _phCardTwo.transform.position = _pHSlotTwo.position;
+        _phCardThree.transform.position = _pHSlotThree.position;
+        _phCardFour.transform.position = _pHSlotFour.position;
     }
 
     public void SetUpHand()
@@ -286,12 +356,10 @@ public class DeckTester : MonoBehaviour
         _buttonFive.SetActive(false);
     }
 
-    public void PlayCardOnBoard(GameObject slot)
+    public void PlayCardOnBoard(GameObject card, Transform slot)
     {
-
-        //slot.transform.position = _discardZone.transform.position;
-        slot.transform.Rotate(90, 0, 0, Space.World);
-        slot.transform.position = new Vector3(_discardZone.transform.position.x, _discardZone.transform.position.y + _discardCount, _discardZone.transform.position.z);
+        card.transform.position = Vector3.Lerp(slot.position, _discardZone.transform.position, lerpPct);
+        card.transform.rotation = Quaternion.Lerp(slot.rotation, _discardZone.transform.rotation, lerpPct);
         _discardCount += .01f;
     }
 }

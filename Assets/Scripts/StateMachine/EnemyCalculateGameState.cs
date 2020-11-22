@@ -7,7 +7,7 @@ public class EnemyCalculateGameState : CardGameState
     bool _calculated = false;
     public override void Enter()
     {
-        Debug.Log("Entering Enemy Calculations..");
+        //Debug.Log("Entering Enemy Calculations..");
     }
 
     public override void Tick()
@@ -16,7 +16,7 @@ public class EnemyCalculateGameState : CardGameState
         _calculated = true;
         if (_calculated == true)
         {
-            Debug.Log("Enemy Calculations are done");
+           // Debug.Log("Enemy Calculations are done");
             _calculated = false;
             StateMachine.ChangeState<PlayerTurnCardGameState>();
         }
@@ -24,7 +24,7 @@ public class EnemyCalculateGameState : CardGameState
 
     public override void Exit()
     {
-        Debug.Log("Exiting Enemy Calculations.");
+        //Debug.Log("Exiting Enemy Calculations.");
     }
 
 

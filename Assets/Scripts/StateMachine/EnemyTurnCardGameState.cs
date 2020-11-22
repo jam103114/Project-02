@@ -13,7 +13,7 @@ public class EnemyTurnCardGameState : CardGameState
 
     public override void Enter()
     {
-        Debug.Log("Enemy Turn: ...Enter");
+        //Debug.Log("Enemy Turn: ...Enter");
         EnemyTurnBegan?.Invoke();
 
         StartCoroutine(EnemyThinkingRoutine(_pauseDuration));
@@ -29,7 +29,7 @@ public class EnemyTurnCardGameState : CardGameState
     }
     public override void Exit()
     {
-        Debug.Log("Enemy Turn: Exit...");
+        //Debug.Log("Enemy Turn: Exit...");
     }
 
     IEnumerator EnemyThinkingRoutine(float pauseDuration)

@@ -8,7 +8,7 @@ public class CalculatePlayerDamageTurnGameState : CardGameState
     [SerializeField] Creature _creature = null;
     public override void Enter()
     {
-        Debug.Log("Calculating Player Damage");
+        //Debug.Log("Calculating Player Damage");
     }
 
     public override void Tick()
@@ -30,6 +30,6 @@ public class CalculatePlayerDamageTurnGameState : CardGameState
 
     public override void Exit()
     {
-        Debug.Log("Leaving Player Damage Cal state");
+        //Debug.Log("Leaving Player Damage Cal state");
     }
 }

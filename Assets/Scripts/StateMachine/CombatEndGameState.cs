@@ -7,7 +7,7 @@ public class CombatEndGameState : CardGameState
     [SerializeField] Creature _creature = null;
     public override void Enter()
     {
-        Debug.Log("Combat Ending Enter");
+        //Debug.Log("Combat Ending Enter");
     }
 
     public override void Tick()
@@ -24,6 +24,6 @@ public class CombatEndGameState : CardGameState
 
     public override void Exit()
     {
-        Debug.Log("Combat Ending Exit");
+        //Debug.Log("Combat Ending Exit");
     }
 }

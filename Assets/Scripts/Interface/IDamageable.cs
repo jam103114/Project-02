@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IDamageable 
 {
-    void TakeDamage(int damage);
+    void TakePhysicalDamage(int damage);
+    void TakeMagicDamage(int damage);
     void Kill();
 }

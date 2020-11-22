@@ -7,13 +7,13 @@ public class MainMenuGameState : CardGameState
     bool _activated = false;
     public override void Enter()
     {
-        Debug.Log("Main Menu");
+        //Debug.Log("Main Menu");
 
     }
 
     public override void Tick()
     {
-        Debug.Log("calling mm tick");
+        //Debug.Log("calling mm tick");
         if (_activated == true)
         {
             _activated = false;
@@ -23,12 +23,12 @@ public class MainMenuGameState : CardGameState
 
     public override void Exit()
     {
-        Debug.Log("Leaving Main Menu");
+        //Debug.Log("Leaving Main Menu");
     }
 
     public void OnPressStartGame()
     {
-        Debug.Log("hit the button");
+        //Debug.Log("hit the button");
         _activated = true;
     }
 }

@@ -1165,7 +1165,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 409456618}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 433061639}
+        m_MethodName: PlayCardFive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 887438964}
+        m_MethodName: OnPressedConfirm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &409456618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,15 +1357,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _abilityDeckConfig:
   - {fileID: 11400000, guid: d155be94686a76c4ba621bc055f1911a, type: 2}
-  - {fileID: 11400000, guid: 5a4c5332ae3851a499007f48901fa5cd, type: 2}
-  - {fileID: 11400000, guid: 3b670e2e92b03444ea570da3bf0c69dd, type: 2}
-  - {fileID: 11400000, guid: 4fe2134840b52c344a23d79363dd6703, type: 2}
   - {fileID: 11400000, guid: d155be94686a76c4ba621bc055f1911a, type: 2}
+  - {fileID: 11400000, guid: d26828a334f82b74e802c02339537c0e, type: 2}
+  - {fileID: 11400000, guid: d26828a334f82b74e802c02339537c0e, type: 2}
   - {fileID: 11400000, guid: 5a4c5332ae3851a499007f48901fa5cd, type: 2}
+  - {fileID: 11400000, guid: 5a4c5332ae3851a499007f48901fa5cd, type: 2}
+  - {fileID: 11400000, guid: be4e0845f01ab664bbdfcaac2388794c, type: 2}
+  - {fileID: 11400000, guid: be4e0845f01ab664bbdfcaac2388794c, type: 2}
   - {fileID: 11400000, guid: 3b670e2e92b03444ea570da3bf0c69dd, type: 2}
+  - {fileID: 11400000, guid: 3b670e2e92b03444ea570da3bf0c69dd, type: 2}
+  - {fileID: 11400000, guid: ab16cbbd062294642acaee96ece128ed, type: 2}
+  - {fileID: 11400000, guid: ab16cbbd062294642acaee96ece128ed, type: 2}
   - {fileID: 11400000, guid: 4fe2134840b52c344a23d79363dd6703, type: 2}
-  - {fileID: 11400000, guid: d155be94686a76c4ba621bc055f1911a, type: 2}
-  - {fileID: 11400000, guid: 5a4c5332ae3851a499007f48901fa5cd, type: 2}
+  - {fileID: 11400000, guid: 4fe2134840b52c344a23d79363dd6703, type: 2}
+  - {fileID: 11400000, guid: 58934154b34ce5c4887f3b011826d4f7, type: 2}
+  - {fileID: 11400000, guid: 58934154b34ce5c4887f3b011826d4f7, type: 2}
   - {fileID: 11400000, guid: ddbbd77340c201c41a8b2902869d6bd7, type: 2}
   - {fileID: 11400000, guid: ddbbd77340c201c41a8b2902869d6bd7, type: 2}
   _discardZone: {fileID: 1098301247}
@@ -1365,6 +1393,8 @@ MonoBehaviour:
   phFour: 0
   phFive: 0
   _discardCount: 0
+  lerpPct: 0
+  _countTxtone: {fileID: 0}
 --- !u!4 &433061640
 Transform:
   m_ObjectHideFlags: 0
@@ -3959,6 +3989,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 917149081}
+  - component: {fileID: 917149082}
   m_Layer: 0
   m_Name: Player Character
   m_TagString: Untagged
@@ -3980,6 +4011,24 @@ Transform:
   m_Father: {fileID: 1620545097}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &917149082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917149080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a2a34c70c6ce94da91ae80d2930ddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hp: 0
+  _resourcePoints: 2
+  _physicalAttack: 3
+  _physicalDefense: 3
+  _magicalAttack: 3
+  _magicalDefense: 3
 --- !u!1 &920208964
 GameObject:
   m_ObjectHideFlags: 0
@@ -4061,7 +4110,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 920208967}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 433061639}
+        m_MethodName: PlayCardFour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 887438964}
+        m_MethodName: OnPressedConfirm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &920208967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4180,7 +4251,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 954389381}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 433061639}
+        m_MethodName: PlayCardThree
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 887438964}
+        m_MethodName: OnPressedConfirm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &954389381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4754,13 +4847,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098301247}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -13.86, y: 0, z: 5.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1620545097}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1134209009
 GameObject:
   m_ObjectHideFlags: 0
@@ -5256,7 +5349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1367166899
 Transform:
   m_ObjectHideFlags: 0

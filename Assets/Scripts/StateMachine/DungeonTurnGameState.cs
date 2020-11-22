@@ -19,7 +19,7 @@ public class DungeonTurnGameState : CardGameState
     /// </summary>
     public override void Enter()
     {
-        Debug.Log("Entering Dungeon Turn");
+        //Debug.Log("Entering Dungeon Turn");
         _dungeonDeck.SetActive(true);
     }
 
@@ -43,7 +43,7 @@ public class DungeonTurnGameState : CardGameState
 
     public override void Exit()
     {
-        Debug.Log("Leving Dungeon Turn");
+        //Debug.Log("Leving Dungeon Turn");
     }
 
     //THIS FUNCTION IS TEMP!!!!!!!!!!!!!!!!!!

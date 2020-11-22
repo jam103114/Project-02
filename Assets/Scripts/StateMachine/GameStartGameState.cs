@@ -13,7 +13,7 @@ public class GameStartGameState : CardGameState
 
     public override void Enter()
     {
-        Debug.Log("Starting Game");
+        //Debug.Log("Starting Game");
         StartGameBegan?.Invoke();
         StartCoroutine(StartingGame(_pauseDuration));
 
@@ -21,12 +21,12 @@ public class GameStartGameState : CardGameState
 
     public override void Exit()
     {
-        Debug.Log("Leaving Start Game");
+        //Debug.Log("Leaving Start Game");
     }
 
     IEnumerator StartingGame(float pauseDuration)
     {
-        Debug.Log("Setting Up Dungeon Deck");
+        //Debug.Log("Setting Up Dungeon Deck");
         _target._targetSetUp = true;
         yield return new WaitForSeconds(pauseDuration);
 

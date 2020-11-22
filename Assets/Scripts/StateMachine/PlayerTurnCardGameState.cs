@@ -14,8 +14,8 @@ public class PlayerTurnCardGameState : CardGameState
 
     public override void Enter()
     {
-        Debug.Log("Player Turn: ... Entering");
         _playerTurnTextUI.gameObject.SetActive(true);
+        //multiply draw by num of cards played
         _deckTester.Draw();
 
         _playerTurnCount++;
@@ -28,7 +28,7 @@ public class PlayerTurnCardGameState : CardGameState
     {
         _playerTurnTextUI.gameObject.SetActive(false);
         StateMachine.Input.PressedConfirm -= OnPressedConfirm;
-        Debug.Log("Player Turn: Exiting...");
+        //Debug.Log("Player Turn: Exiting...");
         _deckTester.SwitchButtonsOff();
     }
 

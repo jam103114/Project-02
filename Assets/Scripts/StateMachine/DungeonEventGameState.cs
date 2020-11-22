@@ -8,7 +8,7 @@ public class DungeonEventGameState : CardGameState
     bool _checkDone = false;
     public override void Enter()
     {
-        Debug.Log("Enetering Dungeon Event");
+        //Debug.Log("Enetering Dungeon Event");
     }
 
     public override void Tick()
@@ -30,7 +30,7 @@ public class DungeonEventGameState : CardGameState
 
     public override void Exit()
     {
-        Debug.Log("Leaving Dungeon Event");
+        //Debug.Log("Leaving Dungeon Event");
     }
 
     public void DungeonEventCheck()
