@@ -10,12 +10,14 @@ public class GameStartGameState : CardGameState
 
     [SerializeField] float _pauseDuration = 1.5f;
     [SerializeField] TargetController _target = null;
+    [SerializeField] MusicManager musicManager = null;
 
     public override void Enter()
     {
         //Debug.Log("Starting Game");
         StartGameBegan?.Invoke();
         StartCoroutine(StartingGame(_pauseDuration));
+        musicManager.musicSelect = 2;
 
     }
 

@@ -5,10 +5,11 @@ using UnityEngine;
 public class MainMenuGameState : CardGameState
 {
     bool _activated = false;
+    [SerializeField] MusicManager musicManager = null;
     public override void Enter()
     {
         //Debug.Log("Main Menu");
-
+        musicManager.musicSelect = 1;
     }
 
     public override void Tick()

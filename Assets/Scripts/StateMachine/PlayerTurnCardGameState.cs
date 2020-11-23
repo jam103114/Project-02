@@ -9,6 +9,7 @@ public class PlayerTurnCardGameState : CardGameState
     [SerializeField] TextMeshProUGUI _playerTurnTextUI = null;
     [SerializeField] DeckTester _deckTester = null;
     [SerializeField] PlayerCharacter _playerCharacter = null;
+    [SerializeField] Creature creature = null;
 
     int _playerTurnCount = 0;
 
@@ -36,7 +37,7 @@ public class PlayerTurnCardGameState : CardGameState
     public void OnPressedConfirm()
     {
         Debug.Log("current resourse points" + _playerCharacter._resourcePoints);
-        if (_playerCharacter._resourcePoints <= 0)
+        if ((_playerCharacter._resourcePoints <= 0) || (creature._dead = false))
         {
             StateMachine.ChangeState<CalculatePlayerDamageTurnGameState>();
             _playerCharacter._resourcePoints = _playerCharacter._MaxresourcePoints;
