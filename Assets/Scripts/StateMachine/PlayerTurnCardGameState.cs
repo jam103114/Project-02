@@ -11,15 +11,12 @@ public class PlayerTurnCardGameState : CardGameState
     [SerializeField] PlayerCharacter _playerCharacter = null;
     [SerializeField] Creature creature = null;
 
-    int _playerTurnCount = 0;
+    public int _playerTurnCount = 0;
 
     public override void Enter()
     {
         _playerTurnTextUI.gameObject.SetActive(true);
-        //multiply draw by num of cards played
-        //_deckTester.Draw();
         _deckTester.SetUpHand();
-        //_deckTester.SortHand(_deckTester._playerHand.Count);
         _playerTurnCount++;
         _playerTurnTextUI.text = "Player Turn: " + _playerTurnCount.ToString();
         StateMachine.Input.PressedConfirm += OnPressedConfirm;
@@ -30,14 +27,13 @@ public class PlayerTurnCardGameState : CardGameState
     {
         _playerTurnTextUI.gameObject.SetActive(false);
         StateMachine.Input.PressedConfirm -= OnPressedConfirm;
-        //Debug.Log("Player Turn: Exiting...");
         _deckTester.SwitchButtonsOff();
     }
 
     public void OnPressedConfirm()
     {
         Debug.Log("current resourse points" + _playerCharacter._resourcePoints);
-        if ((_playerCharacter._resourcePoints <= 0) || (creature._dead = false))
+        if ((_playerCharacter._resourcePoints <= 0) || (creature._dead == true))
         {
             StateMachine.ChangeState<CalculatePlayerDamageTurnGameState>();
             _playerCharacter._resourcePoints = _playerCharacter._MaxresourcePoints;

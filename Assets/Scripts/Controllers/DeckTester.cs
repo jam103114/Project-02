@@ -9,6 +9,11 @@ public class DeckTester : MonoBehaviour
 {
     [SerializeField] List<AbilityCardData> _abilityDeckConfig = new List<AbilityCardData>();
     [SerializeField] GameObject _discardZone = null;
+    [SerializeField] GameObject _drawZone = null;
+    [SerializeField] GameObject _drawZoneTwo = null;
+    [SerializeField] GameObject _drawZoneThree = null;
+    [SerializeField] GameObject _drawZoneFour = null;
+    [SerializeField] GameObject _drawZoneFive = null;
     [SerializeField] GameObject _toSpawn = null;
     [SerializeField] Transform _pHSlotOne = null;
     [SerializeField] Transform _pHSlotTwo = null;
@@ -41,12 +46,27 @@ public class DeckTester : MonoBehaviour
     [SerializeField] PlayerCharacter _playerChararcter = null;
     public int numCardsPlayed = 0;
     [SerializeField] GameObject hand = null;
+    public bool drawCardOne = false;
+    public bool drawCardTwo = false;
+    public bool drawCardThree = false;
+    public bool drawCardFour = false;
+    public bool drawCardFive = false;
+    //public float lerpCount = 0;
+    public float lerpPctone = 0;
+    public float lerpPcttwo = 0;
+    public float lerpPctthree = 0;
+    public float lerpPctfour = 0;
+    public float lerpPctfive = 0;
+    [SerializeField] AudioSource audioSource = null;
+    [SerializeField] AudioClip _drawClip = null;
+    [SerializeField] AudioClip _playClip = null;
 
     //[SerializeField] TextMeshProUGUI _countTxtone = null;
 
     void Start()
     {
         SetUpAbilityDeck();
+        audioSource.clip = _drawClip;
     }
 
     private void SetUpAbilityDeck()
@@ -126,6 +146,68 @@ public class DeckTester : MonoBehaviour
         }
         else { }
 
+        if (drawCardOne == true)
+        {
+            lerpPctone += .02f;
+            DrawCardLerpOne(_phCardOne, _pHSlotOne);
+            
+            if (lerpPctone >= 3f)
+            {
+                lerpPctone = 0f;
+                drawCardOne = false;
+
+            }
+        }
+        
+        if (drawCardTwo == true)
+        {
+            lerpPcttwo += .02f;
+            DrawCardLerpTwo(_phCardTwo, _pHSlotTwo);
+            if (lerpPcttwo >= 3f)
+            {
+                lerpPcttwo = 0f;
+                drawCardTwo = false;
+                
+            }
+        }
+        
+        if (drawCardThree == true)
+        {
+            lerpPctthree += .02f;
+            DrawCardLerpThree(_phCardThree, _pHSlotThree);
+            if (lerpPctthree >= 3f)
+            {
+                lerpPctthree = 0f;
+                drawCardThree = false;
+                
+            }
+        }
+        
+        if (drawCardFour == true)
+        {
+            lerpPctfour += .02f;
+            DrawCardLerpFour(_phCardFour, _pHSlotFour);
+            if (lerpPctfour >= 3f)
+            {
+                lerpPctfour = 0f;
+                drawCardFour = false;
+                
+            }
+        }
+        
+        if (drawCardFive == true)
+        {
+            lerpPctfive += .02f;
+            DrawCardLerpFive(_phCardFive, _pHSlotFive);
+            if (lerpPctfive >= 3f)
+            {
+                lerpPctfive = 0f;
+                drawCardFive = false;
+                
+            }
+        }
+
+
     }
 
     public void Draw()
@@ -139,52 +221,65 @@ public class DeckTester : MonoBehaviour
                 _playerHand.Add(newCard, DeckPosition.Top); 
                 if (phOne == false)
                 {
-                    _phCardOne = Instantiate(_toSpawn, _pHSlotOne.position, Quaternion.identity);
+                    //_phCardOne = Instantiate(_toSpawn, _pHSlotOne.position, Quaternion.identity);
+                    _phCardOne = Instantiate(_toSpawn, _drawZone.transform.position, _drawZone.transform.rotation);
                     AbilityCardView abilityCardView = _phCardOne.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                     abilityCardView.Display(newCard);
                     _phCardOne.transform.parent = hand.transform;
                     phOne = true;
                     _pHSlotOne.gameObject.SetActive(true);
+                    drawCardOne = true;
+                    audioSource.clip = _drawClip;
+                    audioSource.Play();
                 }
                 else if (phTwo == false)
                 {
-                    _phCardTwo = Instantiate(_toSpawn, _pHSlotTwo.position, Quaternion.identity);
+                    _phCardTwo = Instantiate(_toSpawn, _drawZoneTwo.transform.position, _drawZoneTwo.transform.rotation);
                     AbilityCardView abilityCardView = _phCardTwo.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                     abilityCardView.Display(newCard);
                     _phCardTwo.transform.parent = hand.transform;
                     phTwo = true;
                     _pHSlotTwo.gameObject.SetActive(true);
+                    drawCardTwo = true;
+                    audioSource.clip = _drawClip;
+                    audioSource.Play();
 
                 }
                 else if (phThree == false)
                 {
-                    _phCardThree = Instantiate(_toSpawn, _pHSlotThree.position, Quaternion.identity);
+                    _phCardThree = Instantiate(_toSpawn, _drawZoneThree.transform.position, _drawZoneThree.transform.rotation);
                     AbilityCardView abilityCardView = _phCardThree.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                     abilityCardView.Display(newCard);
                     _phCardThree.transform.parent = hand.transform;
                     phThree = true;
                     _pHSlotThree.gameObject.SetActive(true);
-
+                    drawCardThree = true;
+                    audioSource.clip = _drawClip;
+                    audioSource.Play();
                 }
                 else if (phFour == false)
                 {
-                    _phCardFour = Instantiate(_toSpawn, _pHSlotFour.position, Quaternion.identity);
+                    _phCardFour = Instantiate(_toSpawn, _drawZoneFour.transform.position, _drawZoneFour.transform.rotation);
                     AbilityCardView abilityCardView = _phCardFour.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                     abilityCardView.Display(newCard);
                     _phCardFour.transform.parent = hand.transform;
                     phFour = true;
                     _pHSlotFour.gameObject.SetActive(true);
-
+                    drawCardFour = true;
+                    audioSource.clip = _drawClip;
+                    audioSource.Play();
                 }
                 else if (phFive == false)
                 {
-                    _phCardFive = Instantiate(_toSpawn, _pHSlotFive.position, Quaternion.identity);
+                    _phCardFive = Instantiate(_toSpawn, _drawZoneFive.transform.position, _drawZoneFive.transform.rotation);
                     AbilityCardView abilityCardView = _phCardFive.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                     abilityCardView.Display(newCard);
                     _phCardFive.transform.parent = hand.transform;
                     phFive = true;
                     _pHSlotFive.gameObject.SetActive(true);
-
+                    drawCardFive = true;
+                    audioSource.clip = _drawClip;
+                    audioSource.Play();
                 }
             }
             else
@@ -201,6 +296,8 @@ public class DeckTester : MonoBehaviour
                 _abilityDeck.Add(newCard, DeckPosition.Top);
             }
 
+            //TO DO get rid of card prefabs in discard zone here with child for loop
+
             if (_playerHand.Count < 5)
             {
                 AbilityCard newCard = _abilityDeck.Draw(DeckPosition.Top);
@@ -208,47 +305,65 @@ public class DeckTester : MonoBehaviour
                 _playerHand.Add(newCard, DeckPosition.Top); //Changed top to bottom
                 if (phOne == false)
                 {
-                    _phCardOne = Instantiate(_toSpawn, _pHSlotOne.position, Quaternion.identity);
+                    //_phCardOne = Instantiate(_toSpawn, _pHSlotOne.position, Quaternion.identity);
+                    _phCardOne = Instantiate(_toSpawn, _drawZone.transform.position, _drawZone.transform.rotation);
                     AbilityCardView abilityCardView = _phCardOne.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                     abilityCardView.Display(newCard);
+                    _phCardOne.transform.parent = hand.transform;
                     phOne = true;
                     _pHSlotOne.gameObject.SetActive(true);
+                    drawCardOne = true;
+                    audioSource.clip = _drawClip;
+                    audioSource.Play();
                 }
                 else if (phTwo == false)
                 {
-                    _phCardTwo = Instantiate(_toSpawn, _pHSlotTwo.position, Quaternion.identity);
+                    _phCardTwo = Instantiate(_toSpawn, _drawZoneTwo.transform.position, _drawZoneTwo.transform.rotation);
                     AbilityCardView abilityCardView = _phCardTwo.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                     abilityCardView.Display(newCard);
+                    _phCardTwo.transform.parent = hand.transform;
                     phTwo = true;
                     _pHSlotTwo.gameObject.SetActive(true);
+                    drawCardTwo = true;
+                    audioSource.clip = _drawClip;
+                    audioSource.Play();
 
                 }
                 else if (phThree == false)
                 {
-                    _phCardThree = Instantiate(_toSpawn, _pHSlotThree.position, Quaternion.identity);
+                    _phCardThree = Instantiate(_toSpawn, _drawZoneThree.transform.position, _drawZoneThree.transform.rotation);
                     AbilityCardView abilityCardView = _phCardThree.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                     abilityCardView.Display(newCard);
+                    _phCardThree.transform.parent = hand.transform;
                     phThree = true;
                     _pHSlotThree.gameObject.SetActive(true);
-
+                    drawCardThree = true;
+                    audioSource.clip = _drawClip;
+                    audioSource.Play();
                 }
                 else if (phFour == false)
                 {
-                    _phCardFour = Instantiate(_toSpawn, _pHSlotFour.position, Quaternion.identity);
+                    _phCardFour = Instantiate(_toSpawn, _drawZoneFour.transform.position, _drawZoneFour.transform.rotation);
                     AbilityCardView abilityCardView = _phCardFour.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                     abilityCardView.Display(newCard);
+                    _phCardFour.transform.parent = hand.transform;
                     phFour = true;
                     _pHSlotFour.gameObject.SetActive(true);
-
+                    drawCardFour = true;
+                    audioSource.clip = _drawClip;
+                    audioSource.Play();
                 }
                 else if (phFive == false)
                 {
-                    _phCardFive = Instantiate(_toSpawn, _pHSlotFive.position, Quaternion.identity);
+                    _phCardFive = Instantiate(_toSpawn, _drawZoneFive.transform.position, _drawZoneFive.transform.rotation);
                     AbilityCardView abilityCardView = _phCardFive.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
                     abilityCardView.Display(newCard);
+                    _phCardFive.transform.parent = hand.transform;
                     phFive = true;
                     _pHSlotFive.gameObject.SetActive(true);
-
+                    drawCardFive = true;
+                    audioSource.clip = _drawClip;
+                    audioSource.Play();
                 }
             }
             else
@@ -305,6 +420,8 @@ public class DeckTester : MonoBehaviour
         _playerChararcter._resourcePoints -= targetCard.Cost;
         numCardsPlayed++;
         _phCardOne.transform.parent = _discardZone.transform;
+        audioSource.clip = _playClip;
+        audioSource.Play();
     }
 
     public void PlayCardTwo()
@@ -326,6 +443,8 @@ public class DeckTester : MonoBehaviour
         _playerChararcter._resourcePoints -= targetCard.Cost;
         numCardsPlayed++;
         _phCardTwo.transform.parent = _discardZone.transform;
+        audioSource.clip = _playClip;
+        audioSource.Play();
     }
 
     public void PlayCardThree()
@@ -347,6 +466,8 @@ public class DeckTester : MonoBehaviour
         _playerChararcter._resourcePoints -= targetCard.Cost;
         numCardsPlayed++;
         _phCardThree.transform.parent = _discardZone.transform;
+        audioSource.clip = _playClip;
+        audioSource.Play();
     }
 
     public void PlayCardFour()
@@ -368,6 +489,8 @@ public class DeckTester : MonoBehaviour
         _playerChararcter._resourcePoints -= targetCard.Cost;
         numCardsPlayed++;
         _phCardFour.transform.parent = _discardZone.transform;
+        audioSource.clip = _playClip;
+        audioSource.Play();
     }
 
     public void PlayCardFive()
@@ -389,6 +512,8 @@ public class DeckTester : MonoBehaviour
         _playerChararcter._resourcePoints -= targetCard.Cost;
         numCardsPlayed++;
         _phCardFive.transform.parent = _discardZone.transform;
+        audioSource.clip = _playClip;
+        audioSource.Play();
     }
 
     public void SortHand(int arg)
@@ -633,6 +758,36 @@ public class DeckTester : MonoBehaviour
         card.transform.position = Vector3.Lerp(slot.position, _discardZone.transform.position, lerpPct);
         card.transform.rotation = Quaternion.Lerp(slot.rotation, _discardZone.transform.rotation, lerpPct);
         _discardCount += .01f;
+    }
+
+    public void DrawCardLerpOne(GameObject card, Transform slot)
+    {
+        card.transform.position = Vector3.Lerp( _drawZone.transform.position, slot.position, lerpPctone);
+        card.transform.rotation = Quaternion.Lerp( _drawZone.transform.rotation, slot.rotation, lerpPctone);
+    }
+
+    public void DrawCardLerpTwo(GameObject card, Transform slot)
+    {
+        card.transform.position = Vector3.Lerp(_drawZoneTwo.transform.position, slot.position, lerpPcttwo);
+        card.transform.rotation = Quaternion.Lerp(_drawZoneTwo.transform.rotation, slot.rotation, lerpPcttwo);
+    }
+
+    public void DrawCardLerpThree(GameObject card, Transform slot)
+    {
+        card.transform.position = Vector3.Lerp(_drawZoneThree.transform.position, slot.position, lerpPctthree);
+        card.transform.rotation = Quaternion.Lerp(_drawZoneThree.transform.rotation, slot.rotation, lerpPctthree);
+    }
+
+    public void DrawCardLerpFour(GameObject card, Transform slot)
+    {
+        card.transform.position = Vector3.Lerp(_drawZoneFour.transform.position, slot.position, lerpPctfour);
+        card.transform.rotation = Quaternion.Lerp(_drawZoneFour.transform.rotation, slot.rotation, lerpPctfour);
+    }
+
+    public void DrawCardLerpFive(GameObject card, Transform slot)
+    {
+        card.transform.position = Vector3.Lerp(_drawZoneFive.transform.position, slot.position, lerpPctfive);
+        card.transform.rotation = Quaternion.Lerp(_drawZoneFive.transform.rotation, slot.rotation, lerpPctfive);
     }
 
     public void ToggleHand()

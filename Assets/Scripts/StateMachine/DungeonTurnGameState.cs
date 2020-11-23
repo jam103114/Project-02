@@ -10,6 +10,8 @@ public class DungeonTurnGameState : CardGameState
     [SerializeField] GameObject _dungeonEvent = null;
     [SerializeField] Creature _creature;
     [SerializeField] GameObject _dungeonDeck = null;
+    [SerializeField] PlayerTurnCardGameState PTCGT = null;
+    [SerializeField] DeckTester deckTester = null;
 
 
 
@@ -19,14 +21,12 @@ public class DungeonTurnGameState : CardGameState
     /// </summary>
     public override void Enter()
     {
-        //Debug.Log("Entering Dungeon Turn");
         _dungeonDeck.SetActive(true);
+        PTCGT._playerTurnCount = 0;
     }
 
     public override void Tick()
     {
-
-
         if (_event == true)
         {
             Debug.Log("You chose a Dungeon Card");
@@ -43,10 +43,9 @@ public class DungeonTurnGameState : CardGameState
 
     public override void Exit()
     {
-        //Debug.Log("Leving Dungeon Turn");
     }
 
-    //THIS FUNCTION IS TEMP!!!!!!!!!!!!!!!!!!
+    #region THIS FUNCTION IS TEMP!!!!!!!!!!!!!!!!!!
     public void RandomChoice()
     {
         _randomChoice = Random.Range(1, 3);
@@ -73,4 +72,5 @@ public class DungeonTurnGameState : CardGameState
 
         _enemy = true;
     }
+    #endregion
 }
