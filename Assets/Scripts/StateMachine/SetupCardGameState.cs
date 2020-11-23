@@ -28,6 +28,7 @@ public class SetupCardGameState : CardGameState
         if (_activated == false)
         {
             _activated = true;
+            _creaute._dead = false;
             StateMachine.ChangeState<EnemyCalculateGameState>();
         }
     }
