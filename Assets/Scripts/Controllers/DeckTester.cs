@@ -38,6 +38,9 @@ public class DeckTester : MonoBehaviour
 
     [SerializeField] [Range(0f, 3f)] private float lerpPct = 0f;
     private int playcard = 0;
+    [SerializeField] PlayerCharacter _playerChararcter = null;
+    public int numCardsPlayed = 0;
+    [SerializeField] GameObject hand = null;
 
     //[SerializeField] TextMeshProUGUI _countTxtone = null;
 
@@ -133,6 +136,75 @@ public class DeckTester : MonoBehaviour
             {
                 AbilityCard newCard = _abilityDeck.Draw(DeckPosition.Top);
                 Debug.Log("Drew card: " + newCard.Name);
+                _playerHand.Add(newCard, DeckPosition.Top); 
+                if (phOne == false)
+                {
+                    _phCardOne = Instantiate(_toSpawn, _pHSlotOne.position, Quaternion.identity);
+                    AbilityCardView abilityCardView = _phCardOne.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
+                    abilityCardView.Display(newCard);
+                    _phCardOne.transform.parent = hand.transform;
+                    phOne = true;
+                    _pHSlotOne.gameObject.SetActive(true);
+                }
+                else if (phTwo == false)
+                {
+                    _phCardTwo = Instantiate(_toSpawn, _pHSlotTwo.position, Quaternion.identity);
+                    AbilityCardView abilityCardView = _phCardTwo.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
+                    abilityCardView.Display(newCard);
+                    _phCardTwo.transform.parent = hand.transform;
+                    phTwo = true;
+                    _pHSlotTwo.gameObject.SetActive(true);
+
+                }
+                else if (phThree == false)
+                {
+                    _phCardThree = Instantiate(_toSpawn, _pHSlotThree.position, Quaternion.identity);
+                    AbilityCardView abilityCardView = _phCardThree.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
+                    abilityCardView.Display(newCard);
+                    _phCardThree.transform.parent = hand.transform;
+                    phThree = true;
+                    _pHSlotThree.gameObject.SetActive(true);
+
+                }
+                else if (phFour == false)
+                {
+                    _phCardFour = Instantiate(_toSpawn, _pHSlotFour.position, Quaternion.identity);
+                    AbilityCardView abilityCardView = _phCardFour.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
+                    abilityCardView.Display(newCard);
+                    _phCardFour.transform.parent = hand.transform;
+                    phFour = true;
+                    _pHSlotFour.gameObject.SetActive(true);
+
+                }
+                else if (phFive == false)
+                {
+                    _phCardFive = Instantiate(_toSpawn, _pHSlotFive.position, Quaternion.identity);
+                    AbilityCardView abilityCardView = _phCardFive.transform.Find("Canvas").transform.Find("Panel").GetComponent<AbilityCardView>();
+                    abilityCardView.Display(newCard);
+                    _phCardFive.transform.parent = hand.transform;
+                    phFive = true;
+                    _pHSlotFive.gameObject.SetActive(true);
+
+                }
+            }
+            else
+            {
+                Debug.Log("Max Hand Size");
+            }
+        }
+        else if ((_abilityDeck.IsEmpty == true) && (_abilityDiscard.IsEmpty == false))
+        {
+            Debug.Log("Deck empty, shufling discard into deck");
+            for (int i = _abilityDiscard.Count; i > 0; i--)
+            {
+                AbilityCard newCard = _abilityDiscard.Draw(DeckPosition.Top);
+                _abilityDeck.Add(newCard, DeckPosition.Top);
+            }
+
+            if (_playerHand.Count < 5)
+            {
+                AbilityCard newCard = _abilityDeck.Draw(DeckPosition.Top);
+                Debug.Log("Drew card: " + newCard.Name);
                 _playerHand.Add(newCard, DeckPosition.Top); //Changed top to bottom
                 if (phOne == false)
                 {
@@ -183,10 +255,11 @@ public class DeckTester : MonoBehaviour
             {
                 Debug.Log("Max Hand Size");
             }
+
         }
-        else if((_abilityDeck.IsEmpty == true) && (_abilityDiscard.IsEmpty == false))
+        else if ((_abilityDeck.IsEmpty == true) && (_abilityDiscard.IsEmpty == true))
         {
-            
+            Debug.Log("Deck and Discard Empty");
         }
     }
 
@@ -212,24 +285,6 @@ public class DeckTester : MonoBehaviour
         //SortHand(); TODO
     }
 
-    #region testcode
-    //comment
-   /* public void PlayCard(int index)
-    {
-        AbilityCard targetCard = _playerHand.FirstItem;
-        targetCard.Play();
-        //TODO consider expanding remove to accept a deck position
-        _playerHand.Remove(_playerHand.FirstIndex);
-        _abilityDiscard.Add(targetCard);
-        Debug.Log("Card added to dicard: " + targetCard.Name);
-        phFive = false;
-        playcard = 1;
-        SortHand(1);
-    }*/
-
-
-    #endregion
-
     public void PlayCardOne()
     {
         AbilityCard targetCard = _playerHand.FirstItem;
@@ -238,10 +293,18 @@ public class DeckTester : MonoBehaviour
         _playerHand.Remove(_playerHand.FirstIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
-        phFive = false;
+        if (numCardsPlayed == 0)
+        {
+            phFive = false;
+        }
+        else if (numCardsPlayed == 1)
+        {
+            phFour = false;
+        }
         playcard = 1;
-
-        Debug.Log(_playerHand.Count.ToString());
+        _playerChararcter._resourcePoints -= targetCard.Cost;
+        numCardsPlayed++;
+        _phCardOne.transform.parent = _discardZone.transform;
     }
 
     public void PlayCardTwo()
@@ -251,10 +314,18 @@ public class DeckTester : MonoBehaviour
         _playerHand.Remove(_playerHand.SecondIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
-        phFive = false;
+        if (numCardsPlayed == 0)
+        {
+            phFive = false;
+        }
+        else if (numCardsPlayed == 1)
+        {
+            phFour = false;
+        }
         playcard = 2;
-        //PlayCardOnBoard(_phCardTwo, _pHSlotTwo);
-        //_playerHand.RemoveSecond(DeckPosition.Second);
+        _playerChararcter._resourcePoints -= targetCard.Cost;
+        numCardsPlayed++;
+        _phCardTwo.transform.parent = _discardZone.transform;
     }
 
     public void PlayCardThree()
@@ -264,8 +335,18 @@ public class DeckTester : MonoBehaviour
         _playerHand.Remove(_playerHand.ThirdIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
-        phFive = false;
+        if (numCardsPlayed == 0)
+        {
+            phFive = false;
+        }
+        else if (numCardsPlayed == 1)
+        {
+            phFour = false;
+        }
         playcard = 3;
+        _playerChararcter._resourcePoints -= targetCard.Cost;
+        numCardsPlayed++;
+        _phCardThree.transform.parent = _discardZone.transform;
     }
 
     public void PlayCardFour()
@@ -275,8 +356,18 @@ public class DeckTester : MonoBehaviour
         _playerHand.Remove(_playerHand.FourthIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
-        phFive = false;
+        if (numCardsPlayed == 0)
+        {
+            phFive = false;
+        }
+        else if (numCardsPlayed == 1)
+        {
+            phFour = false;
+        }
         playcard = 4;
+        _playerChararcter._resourcePoints -= targetCard.Cost;
+        numCardsPlayed++;
+        _phCardFour.transform.parent = _discardZone.transform;
     }
 
     public void PlayCardFive()
@@ -286,48 +377,229 @@ public class DeckTester : MonoBehaviour
         _playerHand.Remove(_playerHand.FifthIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to dicard: " + targetCard.Name);
-        phFive = false;
+        if (numCardsPlayed == 0)
+        {
+            phFive = false;
+        }
+        else if (numCardsPlayed == 1)
+        {
+            phFour = false;
+        }
         playcard = 5;
+        _playerChararcter._resourcePoints -= targetCard.Cost;
+        numCardsPlayed++;
+        _phCardFive.transform.parent = _discardZone.transform;
     }
 
-    private void SortHand(int arg)
+    public void SortHand(int arg)
     {
-        if (arg == 1)
+        if (_playerHand.Count >= 4)
         {
-            _phCardOne = _phCardTwo;
-            _phCardTwo = _phCardThree;
-            _phCardThree = _phCardFour;
-            _phCardFour = _phCardFive;
-            _phCardFive = null;
+            if (arg == 1)
+            {
+                _phCardOne = _phCardTwo;
+                _phCardTwo = _phCardThree;
+                _phCardThree = _phCardFour;
+                _phCardFour = _phCardFive;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 2)
+            {
+                _phCardTwo = _phCardThree;
+                _phCardThree = _phCardFour;
+                _phCardFour = _phCardFive;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 3)
+            {
+                _phCardThree = _phCardFour;
+                _phCardFour = _phCardFive;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 4)
+            {
+                _phCardFour = _phCardFive;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 5)
+            {
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else { }
+            _phCardOne.transform.position = _pHSlotOne.position;
+            _phCardTwo.transform.position = _pHSlotTwo.position;
+            _phCardThree.transform.position = _pHSlotThree.position;
+            _phCardFour.transform.position = _pHSlotFour.position;
         }
-        else if (arg == 2)
+        if (_playerHand.Count == 3)
         {
-            _phCardTwo = _phCardThree;
-            _phCardThree = _phCardFour;
-            _phCardFour = _phCardFive;
-            _phCardFive = null;
+            if (arg == 1)
+            {
+                _phCardOne = _phCardTwo;
+                _phCardTwo = _phCardThree;
+                _phCardThree = _phCardFour;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 2)
+            {
+                _phCardTwo = _phCardThree;
+                _phCardThree = _phCardFour;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 3)
+            {
+                _phCardThree = _phCardFour;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 4)
+            {
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 5)
+            {
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else { }
+            _phCardOne.transform.position = _pHSlotOne.position;
+            _phCardTwo.transform.position = _pHSlotTwo.position;
+            _phCardThree.transform.position = _pHSlotThree.position;
         }
-        else if (arg == 3)
+        if (_playerHand.Count == 2)
         {
-            _phCardThree = _phCardFour;
-            _phCardFour = _phCardFive;
-            _phCardFive = null;
+            if (arg == 1)
+            {
+                _phCardOne = _phCardTwo;
+                _phCardTwo = _phCardThree;
+                _buttonThree.SetActive(false);
+                _phCardThree = null;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 2)
+            {
+                _phCardTwo = _phCardThree;
+                _buttonThree.SetActive(false);
+                _phCardThree = null;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 3)
+            {
+                _buttonThree.SetActive(false);
+                _phCardThree = null;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 4)
+            {
+                _buttonThree.SetActive(false);
+                _phCardThree = null;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 5)
+            {
+                _buttonThree.SetActive(false);
+                _phCardThree = null;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else { }
+            _phCardOne.transform.position = _pHSlotOne.position;
+            _phCardTwo.transform.position = _pHSlotTwo.position;
         }
-        else if (arg == 4)
+        if (_playerHand.Count == 1)
         {
-            _phCardFour = _phCardFive;
-            _phCardFive = null;
+            if (arg == 1)
+            {
+                _phCardOne = _phCardTwo;
+                _buttonTwo.SetActive(false);
+                _phCardTwo = null;
+                _buttonThree.SetActive(false);
+                _phCardThree = null;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 2)
+            {
+                _buttonTwo.SetActive(false);
+                _phCardTwo = null;
+                _buttonThree.SetActive(false);
+                _phCardThree = null;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 3)
+            {
+                _buttonTwo.SetActive(false);
+                _phCardTwo = null;
+                _buttonThree.SetActive(false);
+                _phCardThree = null;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 4)
+            {
+                _buttonTwo.SetActive(false);
+                _phCardTwo = null;
+                _buttonThree.SetActive(false);
+                _phCardThree = null;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else if (arg == 5)
+            {
+                _buttonTwo.SetActive(false);
+                _phCardTwo = null;
+                _buttonThree.SetActive(false);
+                _phCardThree = null;
+                _buttonFour.SetActive(false);
+                _phCardFour = null;
+                _buttonFive.SetActive(false);
+                _phCardFive = null;
+            }
+            else { }
+            _phCardOne.transform.position = _pHSlotOne.position;
         }
-        else if (arg == 5)
-        {
-            _phCardFive = null;
-        }
-        else { }
 
-        _phCardOne.transform.position = _pHSlotOne.position;
-        _phCardTwo.transform.position = _pHSlotTwo.position;
-        _phCardThree.transform.position = _pHSlotThree.position;
-        _phCardFour.transform.position = _pHSlotFour.position;
     }
 
     public void SetUpHand()
@@ -361,5 +633,17 @@ public class DeckTester : MonoBehaviour
         card.transform.position = Vector3.Lerp(slot.position, _discardZone.transform.position, lerpPct);
         card.transform.rotation = Quaternion.Lerp(slot.rotation, _discardZone.transform.rotation, lerpPct);
         _discardCount += .01f;
+    }
+
+    public void ToggleHand()
+    {
+        if (hand.activeInHierarchy)
+        {
+            hand.SetActive(false);
+        }
+        else 
+        {
+            hand.SetActive(true);
+        }
     }
 }

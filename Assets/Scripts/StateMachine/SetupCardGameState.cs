@@ -7,6 +7,8 @@ public class SetupCardGameState : CardGameState
     [SerializeField] int _startingCardNumber = 5;
     [SerializeField] int _numberOfPlayers = 2;
     [SerializeField] DeckTester _deckTester = null;
+    [SerializeField] Creature _creaute = null;
+    [SerializeField] GameObject _gameObjectCreature = null;
 
     bool _activated = false;
 
@@ -17,6 +19,8 @@ public class SetupCardGameState : CardGameState
         Debug.Log("Creating deck with " + _startingCardNumber + " cards.");
         _activated = false;
         _deckTester.SetUpHand();
+        _creaute._creatureCount++;
+        _gameObjectCreature.SetActive(true);
     }
 
     public override void Tick()

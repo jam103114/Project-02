@@ -8,6 +8,7 @@ public class CombatEndGameState : CardGameState
     public override void Enter()
     {
         //Debug.Log("Combat Ending Enter");
+        _creature.NextCreature();
     }
 
     public override void Tick()
@@ -26,4 +27,6 @@ public class CombatEndGameState : CardGameState
     {
         //Debug.Log("Combat Ending Exit");
     }
+
+    
 }
