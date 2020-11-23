@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a83fac9fa05d899449e36893fa5ff0a6, type: 3}
-  m_Name: Abilitiy_Barrier
+  m_Script: {fileID: 11500000, guid: 260e1c292ff8bca4c8661a73b58f526b, type: 3}
+  m_Name: NaBarrierBarrier
   m_EditorClassIdentifier: 
-  _name: Barrier
-  _cost: 1
-  _graphic: {fileID: 21300000, guid: b49d914a53404d84a891a65ad65157a1, type: 3}
-  _playEffect: {fileID: 11400000, guid: 6a626d97882832e4ba25ef58a1b2a69c, type: 2}
+  _pDamageAmount: 1
+  _mDamageAmount: 1

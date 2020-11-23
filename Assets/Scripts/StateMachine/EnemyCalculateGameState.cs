@@ -5,9 +5,12 @@ using UnityEngine;
 public class EnemyCalculateGameState : CardGameState
 {
     bool _calculated = false;
+    //[SerializeField] EnemyTurnCardGameState ETCGS = null;
+    [SerializeField] Creature creature = null;
     public override void Enter()
     {
         //Debug.Log("Entering Enemy Calculations..");
+        creature.EnemyChoice();
     }
 
     public override void Tick()

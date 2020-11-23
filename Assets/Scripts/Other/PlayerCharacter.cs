@@ -8,12 +8,12 @@ public class PlayerCharacter : MonoBehaviour
     public int _hp = 10;
     public int _MaxresourcePoints = 2;
     public int _resourcePoints = 2;
-    [SerializeField] int _currentPDef = 1;
-    [SerializeField] int _currentMDef = 1;
-    [SerializeField] int _physicalAttack = 3;
-    [SerializeField] int _physicalDefense = 3;
-    [SerializeField] int _magicalAttack = 3;
-    [SerializeField] int _magicalDefense = 3;
+    public int _currentPDef = 1;
+    public int _currentMDef = 1;
+    public int _physicalAttack = 3;
+    public int _physicalDefense = 3;
+    public int _magicalAttack = 3;
+    public int _magicalDefense = 3;
     public string _name = "enemy 1";
 
     [SerializeField] TextMeshProUGUI tmpName = null;
@@ -37,5 +37,17 @@ public class PlayerCharacter : MonoBehaviour
         tmpCurMagDef.text = _currentMDef.ToString();
         tmpHP.text = _hp.ToString();
         tmpResourcePoints.text = _resourcePoints.ToString();
+    }
+
+    public void AddMagDef(int _md)
+    {
+        _md = _md * _magicalDefense;
+        _currentMDef += _md;
+    }
+
+    public void AddPhyDef(int _pd)
+    {
+        _pd = _pd * _physicalDefense;
+        _currentPDef += _pd;
     }
 }

@@ -1446,6 +1446,8 @@ MonoBehaviour:
   tmpCurPhyDef: {fileID: 1330439012}
   tmpCurMagDef: {fileID: 551252189}
   tmpHP: {fileID: 992517334}
+  playerCharacter: {fileID: 917149082}
+  _choice: 0
 --- !u!4 &304870369
 Transform:
   m_ObjectHideFlags: 0
@@ -2202,8 +2204,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4fe2134840b52c344a23d79363dd6703, type: 2}
   - {fileID: 11400000, guid: 58934154b34ce5c4887f3b011826d4f7, type: 2}
   - {fileID: 11400000, guid: 58934154b34ce5c4887f3b011826d4f7, type: 2}
-  - {fileID: 11400000, guid: ddbbd77340c201c41a8b2902869d6bd7, type: 2}
-  - {fileID: 11400000, guid: ddbbd77340c201c41a8b2902869d6bd7, type: 2}
   _discardZone: {fileID: 1098301247}
   _toSpawn: {fileID: 4600599291040795808, guid: f61477386da473b45b3b8b692931a21a,
     type: 3}
@@ -4585,7 +4585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c347ac15a4c1c754fa2a3025e4a916b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectToTarget: {fileID: 304870368}
+  _creatureToTarget: {fileID: 304870368}
   _targetSetUp: 0
 --- !u!1 &707826247
 GameObject:
@@ -5434,7 +5434,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 36.55, y: 23.8}
+  m_SizeDelta: {x: 19.8, y: 9.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &825799382
 MonoBehaviour:
@@ -5576,6 +5576,7 @@ MonoBehaviour:
   _pauseDuration: 1.5
   _deckTester: {fileID: 433061639}
   playerCharacter: {fileID: 917149082}
+  creature: {fileID: 304870368}
 --- !u!114 &887438966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5601,6 +5602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e492f908a5369334087fc71717ac33a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  creature: {fileID: 304870368}
 --- !u!114 &887438968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7567,7 +7569,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 48, y: 30}
+  m_SizeDelta: {x: 29.3, y: 17.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1081261983
 MonoBehaviour:
@@ -7612,9 +7614,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 423342002}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 433061639}
+        m_MethodName: ToggleHand
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7622,17 +7624,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 423342002}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1081261984
 MonoBehaviour:

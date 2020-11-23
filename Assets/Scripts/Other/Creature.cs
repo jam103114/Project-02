@@ -33,6 +33,10 @@ public class Creature : MonoBehaviour, ITargetable, IDamageable
     [SerializeField] TextMeshProUGUI tmpCurMagDef = null;
     [SerializeField] TextMeshProUGUI tmpHP = null;
 
+    [SerializeField] PlayerCharacter playerCharacter = null;
+
+    public int _choice = 0;
+
     public void Kill()
     {
         _dead = true;
@@ -86,6 +90,11 @@ public class Creature : MonoBehaviour, ITargetable, IDamageable
         }
     }
 
+    public void EnemyChoice()
+    {
+        _choice = Random.Range(0, 3);
+        
+    }
     public void Target()
     {
         Debug.Log("Creature has been targeted.");
@@ -166,5 +175,33 @@ public class Creature : MonoBehaviour, ITargetable, IDamageable
             _tempmagicalDefense = Random.Range(_tempmagicalDefense, _tempmagicalDefense + 3);
             _magicalDefense = _tempmagicalDefense;
         }
+    }
+
+    public void PAttack()
+    {
+        int temp = playerCharacter._physicalDefense - _physicalAttack;
+        if (temp < 0)
+        {
+            playerCharacter._hp -= Mathf.Abs(temp);
+        }
+    }
+
+    public void PDef()
+    {
+        _currentPDef += _physicalDefense;
+    }
+
+    public void MAttack()
+    { 
+        int temp = playerCharacter._magicalDefense - _magicalAttack;
+        if (temp < 0)
+        {
+            playerCharacter._hp -= Mathf.Abs(temp);
+        }
+    }
+
+    public void MDef()
+    {
+        _currentMDef += _magicalDefense;
     }
 }

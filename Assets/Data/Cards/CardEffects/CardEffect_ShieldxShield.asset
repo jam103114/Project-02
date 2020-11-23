@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 260e1c292ff8bca4c8661a73b58f526b, type: 3}
+  m_Script: {fileID: 11500000, guid: 209baa18b7290c1439721143f9e23040, type: 3}
   m_Name: CardEffect_ShieldxShield
   m_EditorClassIdentifier: 
-  _damageAmount: 2
+  _pDefAmount: 2
+  _mDefAmount: 0
+  pcs: {fileID: 0}

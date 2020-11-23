@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 260e1c292ff8bca4c8661a73b58f526b, type: 3}
-  m_Name: CardEffects_Shield
+  m_Name: NaBarrier
   m_EditorClassIdentifier: 
-  _damageAmount: 1
+  _pDamageAmount: 1
+  _mDamageAmount: 1
