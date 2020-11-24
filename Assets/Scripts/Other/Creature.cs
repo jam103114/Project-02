@@ -92,7 +92,7 @@ public class Creature : MonoBehaviour, ITargetable, IDamageable
 
     public void EnemyChoice()
     {
-        _choice = Random.Range(0, 3);
+        _choice = Random.Range(0, 4);
         
     }
     public void Target()
